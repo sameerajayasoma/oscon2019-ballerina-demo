@@ -1,6 +1,7 @@
 import ballerina/log;
 import ballerina/http;
 import ballerina/config;
+import ballerina/io;
 
 // Reads the OpenWeather API key from an env variable
 var appId = <@untainted> config:getAsString("OPEN_WEATHER_API_KEY");
@@ -21,10 +22,7 @@ service city on new http:Listener(8080) {
         json weatherPayload = check weatherResp.getJsonPayload(); 
 
         // The following line fails with the error: invalid literal for type 'tuple binding pattern'
-        // var [longitude, latitude] = [<float>coordsJObject.lon, <float>coordsJObject.lat];
-
-        var longitude = <float>weatherPayload.coord.lon;
-        var latitude = <float>weatherPayload.coord.lat;
+        [float, float] [longitude, latitude] = [<float>weatherPayload.coord.lon, <float>weatherPayload.coord.lat];
 
         // Do a GET on sunrise sunset API resource
         string sunriseResPath = string `/json?lat=${latitude}&lng=${longitude}`;
