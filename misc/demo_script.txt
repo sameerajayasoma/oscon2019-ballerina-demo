@@ -1,0 +1,8 @@
+
+OpenWeather API: 
+https://openweathermap.org/current
+http://api.openweathermap.org/data/2.5
+/weather?q=....&appid=....`
+OPEN_WEATHER_API_KEY - env variable key
+
+export OPEN_WEATHER_API_KEY=<api-key>
