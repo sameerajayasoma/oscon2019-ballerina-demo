@@ -25,7 +25,7 @@ service coordinates on new http:Listener(8080) {
         // Creates the response payload
         json resPayload = {
             city: city,
-            longitude: check payload.coord.lon,
+            longitude: check payload.coord.lon, // lax typing for json for flexibility
             latituede: check payload.coord.lat
         };
 
