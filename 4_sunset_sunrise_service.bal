@@ -15,7 +15,7 @@ service city on new http:Listener(8080) {
     @http:ResourceConfig {
         path:"/{city}"
     }
-    resource function retriew(http:Caller caller, http:Request request, string city) returns error?{
+    resource function retrieve(http:Caller caller, http:Request request, string city) returns error?{
         // Do a GET on OpenWeather API resource
         string weatherResPath = <@untainted> string `/weather?q=${city}&appid=${appId}`;
         http:Response weatherResp = check openWeatherEp->get(weatherResPath);
