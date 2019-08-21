@@ -4,17 +4,17 @@ import ballerina/config;
 
 public function main(string... args) {
     worker coordWorker1 returns Coordinates {
-        string city = args[0];
+        string city = <@untiant> args[0];
         return getCoordinates(city);
     } 
 
     worker coordWorker2 returns Coordinates {
-        string city = args[1]; 
+        string city = <@untiant> args[1]; 
         return getCoordinates(city);
     }
 
     worker coordWorker3 returns Coordinates {
-        string city = args[3];
+        string city = <@untiant> args[2];
         return getCoordinates(city);
     }
 

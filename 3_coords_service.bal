@@ -8,7 +8,7 @@ var appId = <@untainted> config:getAsString("OPEN_WEATHER_API_KEY");
 // Creates a client endpoint for the OpenWeather API
 http:Client openWeatherEp = new("http://api.openweathermap.org/data/2.5");
 
-service coordinates on new http:Listener(8080) {
+service coordinates on new http:Listener(9090) {
     @http:ResourceConfig {
         path:"/{city}"
     }

@@ -11,7 +11,7 @@ http:Client openWeatherEp = new("http://api.openweathermap.org/data/2.5");
 
 http:Client sunriseSunsetEp = new("http://api.sunrise-sunset.org");
 
-service city on new http:Listener(8080) {
+service city on new http:Listener(9090) {
     @http:ResourceConfig {
         path:"/{city}"
     }
@@ -25,7 +25,7 @@ service city on new http:Listener(8080) {
         [float, float] [longitude, latitude] = [<float>weatherPayload.coord.lon, <float>weatherPayload.coord.lat];
 
         // Do a GET on sunrise sunset API resource
-        string sunriseResPath = string `/json?lat=${latitude}&lng=${longitude}`;
+        string sunriseResPath = <@untainted> string `/json?lat=${latitude}&lng=${longitude}`;
         http:Response sunriseResp = check sunriseSunsetEp->get(sunriseResPath);
         json sunrisePayload = check sunriseResp.getJsonPayload();
 
