@@ -8,10 +8,11 @@ service hello on new http:Listener(9090) {
     // incoming request as arguments.
     resource function sayHello(http:Caller caller, http:Request req) {
         // Sends a response back to the caller.
-        var result = caller->respond("Hello, OSCON 2019!\n");
+        var result = caller->respond("Hello, OSS 2019!\n");
         // Logs the `error` in case of a failure.
         if (result is error) {
             log:printError("Error sending response", result);
         }
     }
 }
+

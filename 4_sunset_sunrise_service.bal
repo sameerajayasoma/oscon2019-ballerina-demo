@@ -1,12 +1,11 @@
 import ballerina/log;
 import ballerina/http;
 import ballerina/config;
-import ballerina/io;
 
 // Reads the OpenWeather API key from an env variable
 var appId = <@untainted> config:getAsString("OPEN_WEATHER_API_KEY");
 
-// Creates a client endpoint for the OpenWeather API
+// Create a client endpoint for the OpenWeather API
 http:Client openWeatherEp = new("http://api.openweathermap.org/data/2.5");
 
 http:Client sunriseSunsetEp = new("http://api.sunrise-sunset.org");
@@ -29,11 +28,11 @@ service city on new http:Listener(9090) {
         http:Response sunriseResp = check sunriseSunsetEp->get(sunriseResPath);
         json sunrisePayload = check sunriseResp.getJsonPayload();
 
-        // Creates the response payload
+        // Create the response payload
         json resPayload = {
             city: city,
             sunrise: check sunrisePayload.results.sunrise,
-            suset: check sunrisePayload.results.sunset
+            sunset: check sunrisePayload.results.sunset
         };
 
         // Send the json payload with logitude and latitude to the caller
